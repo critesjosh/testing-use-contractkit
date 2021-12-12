@@ -22,11 +22,26 @@ function Network() {
   return <div>Currently connected to {network.name}</div>
 }
 
+function SwitchFeeCurrency() {
+  const [feeCurrency, setFeeCurrency] = useState(CeloContract.GoldToken)
+
+  return (
+    <>
+      <div>Fee Currency: {feeCurrency}</div>
+      {
+        feeCurrency == "GoldToken" ? (
+          <button onClick={() => setFeeCurrency(CeloContract.StableToken)}>Switch fee currency</button>
+        ) : (
+            <button onClick={() => setFeeCurrency(CeloContract.GoldToken)}>Switch fee currency</button>
+          )
+      }
+    </>
+  )
+}
+
 
 function App() {
   const { kit, connect, address, destroy } = useContractKit()
-
-  const [feeCurrency, setFeeCurrency] = useState(CeloContract.GoldToken)
 
   return (
     <>
@@ -34,11 +49,11 @@ function App() {
         <div>
           <div>Connected to {address}</div>
           <button onClick={destroy}>Disconnect</button>
-          <div>Fee Currency: {feeCurrency}</div>
-          <button onClick={() => setFeeCurrency(CeloContract.StableToken)}>Set fee currency to cUSD</button>
+          <SwitchFeeCurrency />
           <Network />
         </div>
-      ) : (
+      )
+        : (
           <button onClick={connect}>Connect wallet</button>
         )}
     </>
