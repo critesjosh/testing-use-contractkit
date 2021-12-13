@@ -7,9 +7,9 @@ export default function WrappedApp() {
   return (
     <ContractKitProvider
       dapp={{
-        name: 'My awesome dApp',
-        description: 'My awesome description',
-        url: 'https://example.com',
+        name: 'Demo use-contrackit',
+        description: 'App to demo the use-contractkit package',
+        url: 'https://github.com/celo-org/use-contractkit',
       }}
     >
       <App />
@@ -39,6 +39,9 @@ function SwitchFeeCurrency() {
   )
 }
 
+function SendcUSD() {
+
+}
 
 function App() {
   const { kit, connect, address, destroy } = useContractKit()
